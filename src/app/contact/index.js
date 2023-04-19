@@ -3,6 +3,7 @@ import Map from "../../components/Map";
 import TextEntryComponent from "../../components/TextInput";
 import React, { useState } from 'react';
 import CameraComponent from '../../components/CameraComponent';
+import MyForm from "../../components/Form";
 
 
 export default function Page() {
@@ -45,6 +46,9 @@ export default function Page() {
             ) : (
               <CameraComponent onPictureTaken={handlePictureTaken} />
             )}
+
+
+            <MyForm/>
 
           </View>
         </ScrollView>
