@@ -1,8 +1,27 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import MapView, {Marker, Geojson} from 'react-native-maps';
 import { StyleSheet, View } from 'react-native';
+import * as Location from 'expo-location';
 
 export default function Map() {
+
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+     
+      setLocation(location);
+      console.log(location)
+    })
+    ();
+  }, []);
 
     const [longitude, setLongitude] = useState(2.33);
     const [latitude, setLatitude] = useState(48.88);
@@ -20,14 +39,13 @@ export default function Map() {
         ]
       };
 
-
   return (
     <View style={styles.container}>
         <MapView style={styles.map}
             onPress = { (coordonne) => {
                 setLatitude(coordonne.nativeEvent.coordinate.latitude)
                 setLongitude(coordonne.nativeEvent.coordinate.longitude)
-                console.log(coordonne.nativeEvent)
+                
             }}>
             <Geojson
                 geojson={myPlace}
