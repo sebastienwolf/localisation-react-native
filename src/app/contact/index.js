@@ -2,11 +2,18 @@ import { StyleSheet, Text, View } from "react-native";
 import Map from "../../components/Map";
 
 export default function Page() {
+
+  const onChange = ({latitude, longetide, adress})=>{
+
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.main}>
         <Text style={styles.title}>Hello tata</Text>
-        <Map/>
+        <Map
+        onChange = {onChange}
+        />
       </View>
     </View>
   );
