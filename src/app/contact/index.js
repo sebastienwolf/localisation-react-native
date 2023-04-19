@@ -1,10 +1,26 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import Map from "../../components/Map";
+import TextEntryComponent from "../../components/TextInput";
+import React, { useState } from 'react';
+import CameraComponent from '../../components/CameraComponent';
+
 
 export default function Page() {
 
-  const onChange = ({latitude, longetide, adress})=>{
+  const [latitude, setLatitude] = useState("latitude")
+  const [longetitude, setLongitude] = useState("longetitude")
+  const [adress, setAdress] = useState("adress")
 
+  const [imageUri, setImageUri] = useState(null);
+
+  const handlePictureTaken = (uri) => {
+    setImageUri(uri);
+  };
+
+  const onChange = ({latitude, longetitude, adress})=>{
+    setLatitude(latitude.toString())
+    setLongitude(longetitude.toString())
+    setAdress(adress)
   }
 
   return (
@@ -15,6 +31,20 @@ export default function Page() {
         onChange = {onChange}
         />
       </View>
+      <View style={styles.container}>
+        <View style={styles.row}>
+          <TextEntryComponent value={latitude} editable={false} />
+          <TextEntryComponent value={longetitude} editable={false}/>
+        </View> 
+        <TextEntryComponent value={adress} editable={false} />
+
+        {imageUri ? (
+        <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+      ) : (
+        <CameraComponent onPictureTaken={handlePictureTaken} />
+      )}
+
+      </View>
     </View>
   );
 }
@@ -23,7 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    padding: 24,
+    padding: 20,
   },
   main: {
     flex: 1,
@@ -39,4 +69,12 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: "#38434D",
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+    
+  },
+
 });

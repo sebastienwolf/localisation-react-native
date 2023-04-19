@@ -1,35 +1,25 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, TextInput as TextOneLine} from 'react-native';
+import { TextInput, StyleSheet } from 'react-native';
 
-const TextInputExample = () => {
-  const [text, onChangeText] = React.useState('Useless Text');
-  const [number, onChangeNumber] = React.useState('');
-
+const TextEntryComponent = ({ value, ...props }) => {
   return (
-    <SafeAreaView>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeNumber}
-        value={number}
-        placeholder="useless placeholder"
-        keyboardType="numeric"
-      />
-    </SafeAreaView>
+    <TextInput
+      style={styles.input}
+      value={value}
+      editable={false}
+      {...props}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    margin: 12,
+    borderColor: 'gray',
     borderWidth: 1,
-    padding: 10,
+    paddingHorizontal: 10,
+    marginVertical: 10,
   },
 });
 
-export default TextInputExample;
+export default TextEntryComponent;

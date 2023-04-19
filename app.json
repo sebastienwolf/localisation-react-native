@@ -1,6 +1,10 @@
 {
   "expo": {
     "scheme": "acme",
+    "android": {
+      "package": "com.monapplication.android",
+      "permissions": ["CAMERA"]
+    },
     "web": {
       "bundler": "metro"
     },

@@ -39,7 +39,7 @@ export default function Map({onChange}) {
     })
 
     onChange({
-      longitude: location.longitude,
+      longetitude: location.longitude,
       latitude: location.latitude,
       adress : `${getAdress[0].streetNumber} ${getAdress[0].street} ${getAdress[0]. postalCode} ${getAdress[0].city} ${getAdress[0].country}`
     })
