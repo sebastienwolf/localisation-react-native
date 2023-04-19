@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import Map from "../../components/Map";
 import TextEntryComponent from "../../components/TextInput";
 import React, { useState } from 'react';
@@ -17,7 +17,7 @@ export default function Page() {
     setImageUri(uri);
   };
 
-  const onChange = ({latitude, longetitude, adress})=>{
+  const onChange = ({ latitude, longetitude, adress }) => {
     setLatitude(latitude.toString())
     setLongitude(longetitude.toString())
     setAdress(adress)
@@ -26,24 +26,28 @@ export default function Page() {
   return (
     <View style={styles.container}>
       <View style={styles.main}>
-        <Text style={styles.title}>Hello tata</Text>
-        <Map
-        onChange = {onChange}
-        />
-      </View>
-      <View style={styles.container}>
-        <View style={styles.row}>
-          <TextEntryComponent value={latitude} editable={false} />
-          <TextEntryComponent value={longetitude} editable={false}/>
-        </View> 
-        <TextEntryComponent value={adress} editable={false} />
+        <ScrollView>
+          <Text style={styles.title}>Hello tata</Text>
+          <View style={styles.map}>
+            <Map
+              onChange={onChange}
+            />
+          </View>
+          <View style={styles.container}>
+            <View style={styles.row}>
+              <TextEntryComponent value={latitude} editable={false} />
+              <TextEntryComponent value={longetitude} editable={false} />
+            </View>
+            <TextEntryComponent value={adress} editable={false} />
 
-        {imageUri ? (
-        <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
-      ) : (
-        <CameraComponent onPictureTaken={handlePictureTaken} />
-      )}
+            {imageUri ? (
+              <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+            ) : (
+              <CameraComponent onPictureTaken={handlePictureTaken} />
+            )}
 
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -52,14 +56,15 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width:"100%",
     alignItems: "center",
-    padding: 20,
   },
   main: {
-    flex: 1,
-    justifyContent: "center",
-    maxWidth: 960,
+    Width: "100%",
     marginHorizontal: "auto",
+  },
+  map: {
+    height: 300,
   },
   title: {
     fontSize: 64,
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 20,
-    
+
   },
 
 });
