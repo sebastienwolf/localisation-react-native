@@ -23,9 +23,9 @@ export default function CameraComponent({ onPictureTaken }) {
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      setImage(result.uri);
-      onPictureTaken(result.uri);
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+      onPictureTaken(result.assets[0]);
     }
 
   };

@@ -14,8 +14,9 @@ export default function Page() {
 
   const [imageUri, setImageUri] = useState(null);
 
-  const handlePictureTaken = (uri) => {
-    setImageUri(uri);
+  const handlePictureTaken = (image) => {
+    setImageUri(image.uri);
+    console.log(image.uri);
   };
 
   const onChange = ({ latitude, longitude, adress }) => {
@@ -52,7 +53,7 @@ export default function Page() {
               longitude = {longitude}
               latitude = {latitude}
               adress = {adress}
-              Image = {imageUri}
+              image = {imageUri}
             />
 
           </View>

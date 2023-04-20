@@ -4,7 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as MailComposer from 'expo-mail-composer';
 
 
-const MyForm = ({latitude, longitude, adress, imageUri}) => {
+const MyForm = ({latitude, longitude, adress, image}) => {
   const [date, setDate] = useState('');
   const [heure, setHeure] = useState('');
   const [description, setDescription] = useState('');
@@ -20,32 +20,18 @@ const MyForm = ({latitude, longitude, adress, imageUri}) => {
     var options = {
       subject: "Signalement",
       recipients: [mail],
-    //   body:
-    //     `
-    //   <p>${prenom} ${nom}<br>
-    //   ${telephone}<br>
-    //   ${mail}</p>
-    //   <p>date: ${date} heure: ${heure}<br>
-    //   ${adress}<br>
-    //   latitude: ${latitude} longitude: ${longitude}
-    //   ${description}</p>
-  
-    // `,
-    // attachments : imageUri,
-    // isHtml: true,
-    
-
-    body:
-    `
-    ${prenom} ${nom}
-    ${telephone}
-    ${mail}
-    date: ${date} heure: ${heure}
-    ${adress}
-    latitude: ${latitude} longitude: ${longitude}
-    ${description}
-  `,
-  attachments : imageUri,
+      body:
+        `
+      <p>${prenom} ${nom}<br>
+      ${telephone}<br>
+      ${mail}</p>
+      <p>date: ${date} heure: ${heure}<br>
+      ${adress}<br>
+      latitude: ${latitude} longitude: ${longitude}
+      ${description}</p>
+    `,
+    attachments: [image],
+    isHtml: true,
     
     };
 
