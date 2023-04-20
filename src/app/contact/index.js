@@ -9,18 +9,18 @@ import MyForm from "../../components/Form";
 export default function Page() {
 
   const [latitude, setLatitude] = useState("latitude")
-  const [longetitude, setLongitude] = useState("longetitude")
+  const [longitude, setLongitude] = useState("longitude")
   const [adress, setAdress] = useState("adress")
 
   const [imageUri, setImageUri] = useState(null);
 
   const handlePictureTaken = (uri) => {
-    setImageUri(uri);
+    setImage(uri);
   };
 
-  const onChange = ({ latitude, longetitude, adress }) => {
-    setLatitude(latitude.toString())
-    setLongitude(longetitude.toString())
+  const onChange = ({ latitude, longitude, adress }) => {
+    setLatitude(latitude)
+    setLongitude(longitude)
     setAdress(adress)
   }
 
@@ -37,18 +37,24 @@ export default function Page() {
           <View style={styles.container}>
             <View style={styles.row}>
               <TextEntryComponent value={latitude} editable={false} />
-              <TextEntryComponent value={longetitude} editable={false} />
+              <TextEntryComponent value={longitude} editable={false} />
             </View>
             <TextEntryComponent value={adress} editable={false} />
 
-            {imageUri ? (
+            {image ? (
+              
               <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
             ) : (
               <CameraComponent onPictureTaken={handlePictureTaken} />
             )}
 
 
-            <MyForm/>
+            <MyForm
+              longitude = {longitude}
+              latitude = {latitude}
+              adress = {adress}
+              Image = {image}
+            />
 
           </View>
         </ScrollView>
