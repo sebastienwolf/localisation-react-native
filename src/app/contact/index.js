@@ -15,7 +15,7 @@ export default function Page() {
   const [imageUri, setImageUri] = useState(null);
 
   const handlePictureTaken = (uri) => {
-    setImage(uri);
+    setImageUri(uri);
   };
 
   const onChange = ({ latitude, longitude, adress }) => {
@@ -41,8 +41,7 @@ export default function Page() {
             </View>
             <TextEntryComponent value={adress} editable={false} />
 
-            {image ? (
-              
+            {imageUri ? (
               <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
             ) : (
               <CameraComponent onPictureTaken={handlePictureTaken} />
@@ -53,7 +52,7 @@ export default function Page() {
               longitude = {longitude}
               latitude = {latitude}
               adress = {adress}
-              Image = {image}
+              Image = {imageUri}
             />
 
           </View>
