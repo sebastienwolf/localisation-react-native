@@ -3,13 +3,18 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web --tunnel"
+    "web": "expo start --web --tunnel -c"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "6.7.3",
     "axios": "^1.3.5",
+    "date-fns": "^2.29.3",
     "expo": "^48.0.7",
     "expo-constants": "~14.2.1",
+    "expo-image-picker": "~14.1.1",
     "expo-linking": "~4.0.1",
+    "expo-location": "~15.1.1",
+    "expo-mail-composer": "~12.1.1",
     "expo-router": "^1.2.0",
     "expo-splash-screen": "~0.18.1",
     "expo-status-bar": "~1.4.2",
@@ -21,11 +26,7 @@
     "react-native-reanimated": "~2.14.4",
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "~3.20.0",
-    "react-native-web": "~0.18.7",
-    "expo-location": "~15.1.1",
-    "expo-image-picker": "~14.1.1",
-    "@react-native-community/datetimepicker": "6.7.3",
-    "expo-mail-composer": "~12.1.1"
+    "react-native-web": "~0.18.7"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

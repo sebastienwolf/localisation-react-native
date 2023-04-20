@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as MailComposer from 'expo-mail-composer';
-
+import { format } from 'date-fns';
 
 const MyForm = ({latitude, longitude, adress, image}) => {
-  const [date, setDate] = useState('');
-  const [heure, setHeure] = useState('');
+  const [date, setDate] = useState(format(new Date(), 'dd/MM/yyyy'));
+  const [heure, setHeure] = useState(format(new Date(), 'H:m'));
   const [description, setDescription] = useState('');
   const [nom, setNom] = useState('');
   const [prenom, setPrenom] = useState('');
@@ -50,6 +50,7 @@ const MyForm = ({latitude, longitude, adress, image}) => {
         style={styles.input}
         value={date}
         onChangeText={setDate}
+        editable={false}
         
       />
       <Text style={styles.label}>Heure :</Text>
@@ -57,6 +58,7 @@ const MyForm = ({latitude, longitude, adress, image}) => {
         style={styles.input}
         value={heure}
         onChangeText={setHeure}
+        editable={false}
       />
       <Text style={styles.label}>Description :</Text>
       <TextInput

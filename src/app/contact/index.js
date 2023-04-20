@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView, Button } from "react-native";
 import Map from "../../components/Map";
 import TextEntryComponent from "../../components/TextInput";
 import React, { useState } from 'react';
 import CameraComponent from '../../components/CameraComponent';
 import MyForm from "../../components/Form";
+import MediaPicture from "../../components/MediaPicture";
 
 
 export default function Page() {
@@ -25,6 +26,10 @@ export default function Page() {
     setAdress(adress)
   }
 
+  const deletePicture = ()=>{
+    setImageUri(null)
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.main}>
@@ -42,12 +47,10 @@ export default function Page() {
             </View>
             <TextEntryComponent value={adress} editable={false} />
 
-            {imageUri ? (
-              <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
-            ) : (
-              <CameraComponent onPictureTaken={handlePictureTaken} />
-            )}
-
+            <CameraComponent onPictureTaken={handlePictureTaken} />
+            <MediaPicture onPictureTaken={handlePictureTaken}/>
+            {imageUri ?  <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} /> : null}
+            <Button title="Supprimer une image" onPress={deletePicture} />
 
             <MyForm
               longitude = {longitude}
