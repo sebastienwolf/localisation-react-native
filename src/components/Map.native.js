@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef } from 'react';
+import {useState, useEffect, useRef } from 'react';
 import MapView, {Marker, Geojson} from 'react-native-maps';
 import { StyleSheet, View } from 'react-native';
 import * as Location from 'expo-location';

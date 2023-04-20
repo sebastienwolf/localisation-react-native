@@ -1,4 +1,3 @@
-import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
 const TextEntryComponent = ({ value, style, ...props }) => {

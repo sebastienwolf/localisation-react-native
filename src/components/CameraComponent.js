@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 export default function CameraComponent({ onPictureTaken }) {
   const [image, setImage] = useState(null);
@@ -31,9 +32,12 @@ export default function CameraComponent({ onPictureTaken }) {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <TouchableOpacity onPress={takePicture}>
-        <Text style={styles.camera}>Prendre une image</Text>
-      </TouchableOpacity>
+      <AntDesign
+        name="camera"
+        color="#701215"
+        size={40}
+        onPress={() => takePicture()}
+      />
     </View>
   );
 

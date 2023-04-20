@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import * as MailComposer from 'expo-mail-composer';
 import { format } from 'date-fns';
 

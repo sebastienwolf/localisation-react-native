@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View, Image, ScrollView, Button } from "react-native";
 import Map from "../../components/Map";
 import TextEntryComponent from "../../components/TextInput";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CameraComponent from '../../components/CameraComponent';
 import MyForm from "../../components/Form";
 import MediaPicture from "../../components/MediaPicture";
+import { IconButton, Colors } from 'react-native-paper';
+
 
 
 export default function Page() {
@@ -49,13 +51,21 @@ export default function Page() {
             <View style={styles.row}>
               <TextEntryComponent multiline={true} value={adress} editable={false} />
             </View>
-            <View style={styles.row}>
-              <CameraComponent onPictureTaken={handlePictureTaken} />
-              <MediaPicture onPictureTaken={handlePictureTaken} />
-            </View>
-            <View style={styles.image}>
-              {imageUri ? <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} /> : null}
-              {imageUri ? <Button title="Supprimer une image" onPress={deletePicture} /> : null}
+            <View style={styles.picture}>
+              <Text style={styles.h2}>Veuillez mettre une photo.</Text>
+              <View style={styles.row}>
+                <CameraComponent onPictureTaken={handlePictureTaken} />
+                <MediaPicture onPictureTaken={handlePictureTaken} />
+              </View>
+                {imageUri ? <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} /> : null}
+                {imageUri ?
+                  <IconButton
+                    icon="trash-can-outline"
+                    color="red"
+                    size={50}
+                    onPress={() => deletePicture}
+                  />
+                  : null}
             </View>
 
             <MyForm
@@ -106,8 +116,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  image: {
-    gap:10,
+  picture: {
+    flex:1,
+    flexDirection:"column",
+    alignItems:"center",
+    width:"100%",
+    borderColor: 'gray',
+    borderWidth: 1,
+  },
+  h2: {
+    textAlign: "center"
   }
 
 });

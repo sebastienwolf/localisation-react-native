@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 export default function MediaPicture({ onPictureTaken }) {
   const [image, setImage] = useState(null);
@@ -30,9 +31,12 @@ export default function MediaPicture({ onPictureTaken }) {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <TouchableOpacity onPress={takePicture}>
-        <Text style={styles.camera}>Choisir une image</Text>
-      </TouchableOpacity>
+      <AntDesign
+        name="addfile"
+        color="#121270"
+        size={40}
+        onPress={() => takePicture()}
+      />
     </View>
   );
 
