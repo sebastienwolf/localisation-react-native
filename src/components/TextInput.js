@@ -1,10 +1,10 @@
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
-const TextEntryComponent = ({ value, ...props }) => {
+const TextEntryComponent = ({ value, style, ...props }) => {
   return (
     <TextInput
-      style={styles.input}
+      style={[styles.input, style]}
       value={value}
       editable={false}
       {...props}
@@ -14,11 +14,10 @@ const TextEntryComponent = ({ value, ...props }) => {
 
 const styles = StyleSheet.create({
   input: {
-    height: 40,
-    borderColor: 'gray',
+    flex:1,
+    borderColor: 'black',
     borderWidth: 1,
-    paddingHorizontal: 10,
-    marginVertical: 10,
+    textAlign :'center',
   },
 });
 

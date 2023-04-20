@@ -24,6 +24,7 @@ export default function Page() {
     setLatitude(latitude)
     setLongitude(longitude)
     setAdress(adress)
+    console.log(adress)
   }
 
   const deletePicture = ()=>{
@@ -34,7 +35,7 @@ export default function Page() {
     <View style={styles.container}>
       <View style={styles.main}>
         <ScrollView>
-          <Text style={styles.title}>Hello tata</Text>
+          <Text style={styles.title}>Formulaire d'incident</Text>
           <View style={styles.map}>
             <Map
               onChange={onChange}
@@ -42,21 +43,26 @@ export default function Page() {
           </View>
           <View style={styles.container}>
             <View style={styles.row}>
-              <TextEntryComponent value={latitude} editable={false} />
-              <TextEntryComponent value={longitude} editable={false} />
+              <TextEntryComponent value={latitude} editable={false} style={{ marginLeft: 2, marginRight: 2, }} />
+              <TextEntryComponent value={longitude} editable={false} style={{ marginLeft: 2, marginRight: 2, }} />
             </View>
-            <TextEntryComponent value={adress} editable={false} />
-
-            <CameraComponent onPictureTaken={handlePictureTaken} />
-            <MediaPicture onPictureTaken={handlePictureTaken}/>
-            {imageUri ?  <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} /> : null}
-            <Button title="Supprimer une image" onPress={deletePicture} />
+            <View style={styles.row}>
+              <TextEntryComponent multiline={true} value={adress} editable={false} />
+            </View>
+            <View style={styles.row}>
+              <CameraComponent onPictureTaken={handlePictureTaken} />
+              <MediaPicture onPictureTaken={handlePictureTaken} />
+            </View>
+            <View style={styles.image}>
+              {imageUri ? <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} /> : null}
+              {imageUri ? <Button title="Supprimer une image" onPress={deletePicture} /> : null}
+            </View>
 
             <MyForm
-              longitude = {longitude}
-              latitude = {latitude}
-              adress = {adress}
-              image = {imageUri}
+              longitude={longitude}
+              latitude={latitude}
+              adress={adress}
+              image={imageUri}
             />
 
           </View>
@@ -71,6 +77,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width:"100%",
     alignItems: "center",
+    padding:20
+    
   },
   main: {
     Width: "100%",
@@ -80,19 +88,26 @@ const styles = StyleSheet.create({
     height: 300,
   },
   title: {
-    fontSize: 64,
+    flexDirection: 'row',
+    fontSize: 40,
+    width:"100%",
     fontWeight: "bold",
+    textAlign: "center"
+    
   },
   subtitle: {
     fontSize: 36,
     color: "#38434D",
   },
   row: {
+    margin:10,
+    Width: "100%",
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
-
   },
+  image: {
+    gap:10,
+  }
 
 });

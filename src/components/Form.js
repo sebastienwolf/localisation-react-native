@@ -4,6 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as MailComposer from 'expo-mail-composer';
 import { format } from 'date-fns';
 
+
 const MyForm = ({latitude, longitude, adress, image}) => {
   const [date, setDate] = useState(format(new Date(), 'dd/MM/yyyy'));
   const [heure, setHeure] = useState(format(new Date(), 'H:m'));
@@ -45,14 +46,17 @@ const MyForm = ({latitude, longitude, adress, image}) => {
 
   return (
     <View style={styles.container}>
+       <View style={styles.row}>
+      <View style={styles.div}>
       <Text style={styles.label}>Date :</Text>
       <TextInput
         style={styles.input}
         value={date}
         onChangeText={setDate}
         editable={false}
-        
       />
+      </View>
+      <View style={styles.div}>
       <Text style={styles.label}>Heure :</Text>
       <TextInput
         style={styles.input}
@@ -60,24 +64,35 @@ const MyForm = ({latitude, longitude, adress, image}) => {
         onChangeText={setHeure}
         editable={false}
       />
+      </View>
+      </View>
+      <View style={styles.div}>
       <Text style={styles.label}>Description :</Text>
       <TextInput
         style={styles.input}
         value={description}
         onChangeText={setDescription}
+        multiline={true}
+      
       />
+      </View>
+      <View style={styles.div}>
       <Text style={styles.label}>Nom :</Text>
       <TextInput
         style={styles.input}
         value={nom}
         onChangeText={setNom}
       />
+      </View>
+      <View style={styles.div}>
       <Text style={styles.label}>Prénom :</Text>
       <TextInput
         style={styles.input}
         value={prenom}
         onChangeText={setPrenom}
       />
+      </View>
+      <View style={styles.div}>
       <Text style={styles.label}>Téléphone :</Text>
       <TextInput
         style={styles.input}
@@ -87,6 +102,8 @@ const MyForm = ({latitude, longitude, adress, image}) => {
         maxLength={10}
 
       />
+      </View>
+      <View style={styles.div}>
       <Text style={styles.label}>E-mail :</Text>
       <TextInput
         style={styles.input}
@@ -94,6 +111,8 @@ const MyForm = ({latitude, longitude, adress, image}) => {
         onChangeText={setMail}
         keyboardType="email-address"
       />
+      </View>
+
       <Text style={styles.label}>{error}</Text>
       
       <Button title="Envoyer" onPress={sendEmail} />
@@ -104,7 +123,9 @@ const MyForm = ({latitude, longitude, adress, image}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 20,
+    margin: 10,
+    gap: 15,
+    width:"100%"
   },
   label: {
     fontSize: 16,
@@ -113,11 +134,23 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
+    width: "100%",
     borderColor: '#ccc',
     padding: 10,
-    marginBottom: 20,
     borderRadius: 5,
   },
+  div: {
+    Width: "100%",
+    alignItems: 'center',
+  },
+  row: {
+    gap: 10,
+    Width: "100%",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  }
+
 });
 
 export default MyForm;
