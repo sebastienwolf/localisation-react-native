@@ -27,6 +27,7 @@ export default function CameraComponent({ onPictureTaken }) {
       setImage(result.uri);
       onPictureTaken(result.uri);
     }
+
   };
 
   return (

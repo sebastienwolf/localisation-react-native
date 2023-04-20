@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import * as MailComposer from 'expo-mail-composer';
 
-const MyForm = () => {
+
+const MyForm = ({latitude, longitude, adress, image}) => {
   const [date, setDate] = useState('');
   const [heure, setHeure] = useState('');
   const [description, setDescription] = useState('');
@@ -10,10 +12,50 @@ const MyForm = () => {
   const [prenom, setPrenom] = useState('');
   const [telephone, setTelephone] = useState('');
   const [mail, setMail] = useState('');
+  const [error, setError] = useState('')
 
-  const handleSubmit = () => {
+
+  const sendEmail = async () => {
+    console.log(image);
+    var options = {
+      subject: "Signalement",
+      recipients: [mail],
+    //   body:
+    //     `
+    //   <p>${prenom} ${nom}<br>
+    //   ${telephone}<br>
+    //   ${mail}</p>
+    //   <p>date: ${date} heure: ${heure}<br>
+    //   ${adress}<br>
+    //   latitude: ${latitude} longitude: ${longitude}
+    //   ${description}</p>
+  
+    // `,
+    // attachments : imageUri,
+    // isHtml: true,
     
-  };
+
+    body:
+    `
+    ${prenom} ${nom}
+    ${telephone}
+    ${mail}
+    date: ${date} heure: ${heure}
+    ${adress}
+    latitude: ${latitude} longitude: ${longitude}
+    ${description}
+  `,
+  attachments : image,
+    
+    };
+
+    try {
+      const result = await MailComposer.composeAsync(options);
+      setError('L\'e-mail a été envoyé avec succès');
+    } catch (error) {
+      setError('Une erreur est survenue lors de l\'envoi de l\'e-mail');
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -64,7 +106,9 @@ const MyForm = () => {
         onChangeText={setMail}
         keyboardType="email-address"
       />
-      <Button title="Envoyer" onPress={handleSubmit} />
+      <Text style={styles.label}>{error}</Text>
+      
+      <Button title="Envoyer" onPress={sendEmail} />
     </View>
   );
 };
