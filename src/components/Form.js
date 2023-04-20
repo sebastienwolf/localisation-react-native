@@ -12,7 +12,7 @@ const MyForm = () => {
   const [mail, setMail] = useState('');
 
   const handleSubmit = () => {
-    // handle form submission here
+    
   };
 
   return (
@@ -22,6 +22,7 @@ const MyForm = () => {
         style={styles.input}
         value={date}
         onChangeText={setDate}
+        
       />
       <Text style={styles.label}>Heure :</Text>
       <TextInput
@@ -52,12 +53,16 @@ const MyForm = () => {
         style={styles.input}
         value={telephone}
         onChangeText={setTelephone}
+        keyboardType="phone-pad"
+        maxLength={10}
+
       />
       <Text style={styles.label}>E-mail :</Text>
       <TextInput
         style={styles.input}
         value={mail}
         onChangeText={setMail}
+        keyboardType="email-address"
       />
       <Button title="Envoyer" onPress={handleSubmit} />
     </View>
