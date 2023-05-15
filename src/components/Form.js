@@ -12,10 +12,45 @@ const MyForm = ({latitude, longitude, adress, image}) => {
   const [prenom, setPrenom] = useState('');
   const [telephone, setTelephone] = useState('');
   const [mail, setMail] = useState('');
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
+  const [descriptionError, setDescriptionError] = useState(false);
+  const [mailError, setMailError] = useState(false);
+  const [telError, setTelError] = useState(false);
+  const [prenomError, setPrenomError] = useState(false);
+  const [nomError, setNomError] = useState(false);
 
-
+  
   const sendEmail = async () => {
+
+    if (description === '') {
+      setDescriptionError(true);
+    } else {
+      setDescriptionError(false);
+    }
+
+    if (nom === '') {
+      setNomError(true);
+    } else {
+      setNomError(false);
+    }
+
+    if (prenom === '') {
+      setPrenomError(true);
+    } else {
+      setPrenomError(false);
+    }
+
+    if (mail === '') {
+      setMailError(true);
+    } else {
+      setMailError(false);
+    }
+
+    if (telephone === '') {
+      setTelError(true);
+    } else {
+      setTelError(false);
+    }
    
     var options = {
       subject: "Signalement",
@@ -39,7 +74,13 @@ const MyForm = ({latitude, longitude, adress, image}) => {
       const result = await MailComposer.composeAsync(options);
       setError('L\'e-mail a été envoyé avec succès');
     } catch (error) {
-      setError('Une erreur est survenue lors de l\'envoi de l\'e-mail');
+      if(!description || !nom || !prenom || !mail || !telephone){
+        setError('Veuillez remplir tous les champs');
+      }else if(!image){
+        setError('Veuillez ajouter une image');
+      }else{
+        setError('Une erreur est survenue lors de l\'envoi de l\'e-mail');
+      }
     }
   }
 
@@ -68,47 +109,53 @@ const MyForm = ({latitude, longitude, adress, image}) => {
       <View style={styles.div}>
       <Text style={styles.label}>Description :</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, descriptionError && styles.inputError]}
         value={description}
         onChangeText={setDescription}
         multiline={true}
-      
+        required={true}
       />
+       {/* <View>
+        {this.description == "je suis con" ? <Text style={styles.label}>c'est ok</Text> : <Text style={styles.label}>ecris un truc</Text>}
+      </View> */}
       </View>
       <View style={styles.div}>
       <Text style={styles.label}>Nom :</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, nomError && styles.inputError]}
         value={nom}
         onChangeText={setNom}
+        required={true}
       />
       </View>
       <View style={styles.div}>
       <Text style={styles.label}>Prénom :</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, prenomError && styles.inputError]}
         value={prenom}
         onChangeText={setPrenom}
+        required={true}
       />
       </View>
       <View style={styles.div}>
       <Text style={styles.label}>Téléphone :</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, telError && styles.inputError]}
         value={telephone}
         onChangeText={setTelephone}
         keyboardType="phone-pad"
         maxLength={10}
-
+        required={true}
       />
       </View>
       <View style={styles.div}>
       <Text style={styles.label}>E-mail :</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, mailError && styles.inputError]}
         value={mail}
         onChangeText={setMail}
         keyboardType="email-address"
+        required={true}
       />
       </View>
 
@@ -148,7 +195,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-  }
+  },
+  inputError: {
+    borderColor: 'red',
+  },
 
 });
 
