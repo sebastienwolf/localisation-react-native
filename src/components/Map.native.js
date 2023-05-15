@@ -5,11 +5,11 @@ import * as Location from 'expo-location';
 
 export default function Map({onChange}) {
 
-  const [longitudeMarker, setLongitudeMarker] = useState(48.55);
-  const [latitudeMarker, setLatitudeMarker] = useState(28.2);
+  const [longitudeMarker, setLongitudeMarker] = useState(48.85);
+  const [latitudeMarker, setLatitudeMarker] = useState(2.34);
   const mapRef = useRef(null);
-  const [longitudeMap, setLongitudeMap] = useState(48.55);
-  const [latitudeMap, setLatitudeMap] = useState(28.2);
+  const [longitudeMap, setLongitudeMap] = useState(48.85);
+  const [latitudeMap, setLatitudeMap] = useState(2.34);
 
   useEffect(() => {
     (async () => {
