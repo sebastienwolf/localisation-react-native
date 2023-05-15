@@ -42,7 +42,7 @@ export default function Map({onChange}) {
       longitude: location.longitude.toString(),
       latitude: location.latitude.toString(),
       adress : 
-      `${getAdress[0].streetNumber} ${getAdress[0].street} 
+      `${getAdress[0].streetNumber ? getAdress[0].streetNumber : ""}  ${getAdress[0].street} 
       ${getAdress[0]. postalCode} ${getAdress[0].city} 
       ${getAdress[0].country}`
     })
