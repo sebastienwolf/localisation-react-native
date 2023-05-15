@@ -19,7 +19,7 @@ const MyForm = ({latitude, longitude, adress, image}) => {
    
     var options = {
       subject: "Signalement",
-      recipients: [mail],
+      recipients: ["s.mouret.pro@gmail.com"],
       body:
         `
       <p>${prenom} ${nom}<br>

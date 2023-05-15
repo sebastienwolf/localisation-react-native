@@ -3,13 +3,28 @@
     "scheme": "acme",
     "android": {
       "package": "com.monapplication.android",
-      "permissions": ["CAMERA"]
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "bundler": "metro"
     },
-    "name": "my-app",
+    "name": "Simplon localisation",
     "slug": "my-app",
-    "plugins": ["expo-image-picker"]
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "privacy": "public",
+    "description": "Signalement d'un danger pour simplonVille",
+    "icon": "",
+    "plugins": [
+      "expo-image-picker"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "25892bbd-318c-441b-a876-266f87255642"
+      }
+    }
   }
 }
