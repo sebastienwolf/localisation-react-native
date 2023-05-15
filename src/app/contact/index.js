@@ -19,19 +19,17 @@ export default function Page() {
 
   const handlePictureTaken = (image) => {
     setImageUri(image.uri);
-    console.log(image.uri);
   };
 
   const onChange = ({ latitude, longitude, adress }) => {
     setLatitude(latitude)
     setLongitude(longitude)
     setAdress(adress)
-    console.log(adress)
-  }
+  };
 
   const deletePicture = ()=>{
     setImageUri(null)
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -63,7 +61,7 @@ export default function Page() {
                     icon="trash-can-outline"
                     color="red"
                     size={50}
-                    onPress={() => deletePicture}
+                    onPress={deletePicture}
                   />
                   : null}
             </View>
